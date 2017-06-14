@@ -1,0 +1,13 @@
+## Marcar com '#' ao incio de cada tarefa finalizada
+	Criar pontuação para os inimigos;
+	Método para fazer inimigos ficarem mais rápidos;
+	Sistema de pontuação;
+	Manter 10 melhores pontuações;
+	Criar a lógica dos 4 inimigos (2 lógicas já estão prontas +-);
+	Detecção do dano no canhão;
+	Detecção do fim do jogo por destruição do canhão;
+	Detecção do fim do jogo por invasor chegar a terra;
+	Detcção da eliminação de todos os invasores;
+	Método de finalização do jogo;
+	Interface;
+	Sprites dos inimigos;
