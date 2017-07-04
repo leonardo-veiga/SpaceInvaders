@@ -11,6 +11,7 @@ public class Game {
     private static Game game = null;
     private Canhao canhao;
     private List<Character> activeChars;
+    private int totalPoints;
     
     private Game(){
     }
@@ -29,6 +30,14 @@ public class Game {
     
     public void eliminate(Character c){
         activeChars.remove(c);
+        if (c == canhao){
+            canhao = null;
+        } else {
+        	if (c instanceof Enemy) {
+        		Enemy e = (Enemy) c;
+        		addPoints(e.getPoints());
+        	}
+        }
     }   
 
     public void Start() {
@@ -40,23 +49,12 @@ public class Game {
         activeChars.add(canhao);
         
         for(int i=0; i<5; i++){
-
-        	switch (i) {
-        		case 1: 
-        			activeChars.add(new Inimigo1(100+(i*60),60+i*40));
-        			break;
-        		case 2:
-        			activeChars.add(new Inimigo1(100+(i*60),60+i*40));
-        			break;
-        		case 3:
-        			activeChars.add(new Inimigo1(100+(i*60),60+i*40));
-        			break;
-        		case 4:
-        			activeChars.add(new Inimigo1(100+(i*60),60+i*40));
-        			break;
-        	}
+            activeChars.add(new Ball(100+(i*60),60+i*40));
         }
         
+        activeChars.add(new PiscaPisca(120,380));
+        
+        activeChars.add(new ConjBolas(120,300));
         
         for(Character c:activeChars){
             c.start();
@@ -77,12 +75,22 @@ public class Game {
     }
     
     public void OnInput(KeyCode keyCode, boolean isPressed) {
-        canhao.OnInput(keyCode, isPressed);
+        if (canhao != null){
+            canhao.OnInput(keyCode, isPressed);
+        }
     }
     
     public void Draw(GraphicsContext graphicsContext) {
         for(Character c:activeChars){
             c.Draw(graphicsContext);
         }
+    }
+    
+    public void addPoints(int points) {
+    	this.totalPoints += points;
+    }
+    
+    public int getTotalPoints() {
+    	return this.totalPoints;
     }
 }

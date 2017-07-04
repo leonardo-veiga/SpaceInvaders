@@ -1,4 +1,6 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Paint;
 
 /**
  * Represents the basic game character
@@ -27,7 +29,7 @@ public abstract class BasicElement implements Character{
         lminH = (int)(Params.WINDOW_WIDTH * 0.1);
         lmaxH = (int)(Params.WINDOW_WIDTH * 0.9);
         lminV = (int)(Params.WINDOW_HEIGHT * 0.1);
-        lmaxV = (int)(Params.WINDOW_HEIGHT * 0.9);
+        lmaxV = (int)(Params.WINDOW_HEIGHT * 0.97);
     }
     
     @Override
@@ -50,6 +52,14 @@ public abstract class BasicElement implements Character{
         return(largura);
     }
 
+    
+    private boolean pontoNoRetangulo(int px,int py,int rx1,int ry1,int rx2,int ry2){
+        if ((px>=rx1 && px<=rx2) && (py>=ry1 && py<=ry2)){
+            return(true);
+        }    
+        return(false);
+    }
+    
     @Override
     public void testaColisao(Character outro){
         if (colidiu){
@@ -67,8 +77,8 @@ public abstract class BasicElement implements Character{
         int op2y = op1y+outro.getAltura();
         
         // Verifica colisão
-        if ( ((p1x <= op1x && p2x >= op1x) && (p1y <= op1y && p2y >= op1y)) ||
-             ((p1x <= op2x && p2x >= op2x) && (p1y <= op2y && p2y >= op2y)) ){
+        if ( pontoNoRetangulo(op1x,op1y,p1x,p1y,p2x,p2y) ||
+             pontoNoRetangulo(op2x,op2y,p1x,p1y,p2x,p2y)){
             colidiu = true;
             //outro.setColidiu();
         }

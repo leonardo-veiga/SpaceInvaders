@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Paint;
 
 /**
@@ -14,6 +15,7 @@ public class Shot extends BasicElement{
     public void start(){
         setDirV(-1);
         setSpeed(3);
+        setLargAlt(8,16);
     }
             
     @Override

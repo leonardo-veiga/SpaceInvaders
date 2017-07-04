@@ -1,13 +1,18 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Paint;
 
 /**
  * Represents a simple ball that crosses the screen over and over again
  * @author Bernardo Copstein and Rafael Copstein
  */
-public class Ball extends BasicElement{
+public class Ball extends BasicElement implements Enemy {
+	
+	private int points;
+	
     public Ball(int px,int py){
         super(px,py);
+        points = 2;
     }
     
     @Override
@@ -36,5 +41,10 @@ public class Ball extends BasicElement{
         graphicsContext.setFill(Paint.valueOf("#0000FF"));
         graphicsContext.fillOval(getX(), getY(), 32, 32);
     }    
+    
+    @Override
+    public int getPoints() {
+    	return this.points;
+    }
 }
 

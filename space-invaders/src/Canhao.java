@@ -15,10 +15,15 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
     public void start() {
         setLimH(20,Params.WINDOW_WIDTH-20);
         setLimV(Params.WINDOW_HEIGHT-100,Params.WINDOW_HEIGHT);
+        setLargAlt(32,32);
     }
     
     @Override
     public void Update() {
+        if (jaColidiu()){
+            deactivate();
+            
+        }
         setPosX(getX() + getDirH() * getSpeed());        
     }
     
@@ -33,7 +38,7 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
             setDirH(dh);
         }
         if (keyCode == KeyCode.SPACE){
-            Game.getInstance().addChar(new Shot(getX()+16,getY()-32));
+            Game.getInstance().addChar(new Shot(getX()+16,getY()-17));
         }
         //if (keyCode == KeyCode.UP) do nothing
         //if (keyCode == KeyCode.DOWN) do nothing
@@ -41,8 +46,8 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
     
     @Override
     public void Draw(GraphicsContext graphicsContext) {
-        graphicsContext.setFill(Paint.valueOf("#000000"));
-        graphicsContext.fillRect(getX(), getY()+16, 32, 32);
-        graphicsContext.fillRect(getX()+8, getY()-16, 16, 48);        
+        graphicsContext.setFill(Paint.valueOf("#FF0000"));
+        graphicsContext.fillRect(getX()+8, getY(), 16, 16);
+        graphicsContext.fillRect(getX(), getY()+16, 32, 16);        
     }   
 }
