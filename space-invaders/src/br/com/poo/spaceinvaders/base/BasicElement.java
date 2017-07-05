@@ -1,5 +1,7 @@
 package br.com.poo.spaceinvaders.base;
 
+import br.com.poo.spaceinvaders.gameobjects.Enemy;
+import br.com.poo.spaceinvaders.gameobjects.ShotDown;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -65,6 +67,7 @@ public abstract class BasicElement implements Character{
         if (colidiu){
             return;
         }
+        
         // Monta pontos
         int p1x = this.getX();
         int p1y = this.getY();
@@ -77,11 +80,26 @@ public abstract class BasicElement implements Character{
         int op2y = op1y+outro.getAltura();
         
         // Verifica colisão
-        if ( pontoNoRetangulo(op1x,op1y,p1x,p1y,p2x,p2y) ||
-             pontoNoRetangulo(op2x,op2y,p1x,p1y,p2x,p2y)){
-            colidiu = true;
+        if ( pontoNoRetangulo(op1x,op1y,p1x,p1y,p2x,p2y) || pontoNoRetangulo(op2x,op2y,p1x,p1y,p2x,p2y)){
+        	if (checkFriendlyFire(outro)) {
+        		return;
+        	}
+        	colidiu = true;
             //outro.setColidiu();
         }
+    }
+    
+    private boolean checkFriendlyFire(Character other) {
+    	if ((this instanceof Enemy) && (other instanceof Enemy)) {
+    		return true;
+    	}
+    	if ((this instanceof Enemy) && (other instanceof ShotDown)) {
+    		return true;
+    	}
+    	if ((this instanceof ShotDown) && (other instanceof Enemy)) {
+    		return true;
+    	}
+    	return false;
     }
     
     public int getDirH(){

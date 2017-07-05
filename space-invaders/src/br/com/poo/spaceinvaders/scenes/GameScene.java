@@ -12,14 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 public class GameScene {
 	
 	private static GameScene gameScene = null;
 	
-	public GameScene() {
+	private AnimationTimer animationTimer;
+	
+	private GameScene() {
 		
 	}
 	
@@ -58,8 +58,7 @@ public class GameScene {
         // Register Game Loop       
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        new AnimationTimer()
-        {
+        this.animationTimer = new AnimationTimer() {
             long lastNanoTime = System.nanoTime();
             
             @Override
@@ -74,8 +73,19 @@ public class GameScene {
                 lastNanoTime = currentNanoTime;
             }
             
-        }.start();
+        };
         
+        this.animationTimer.start();
+
         return scene;
 	}
+	
+	public void stop() {
+		this.animationTimer.stop();
+	}
+	
+	public void start() {
+		this.animationTimer.start();
+	}
+	
 }

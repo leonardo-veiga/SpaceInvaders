@@ -1,11 +1,8 @@
 package br.com.poo.spaceinvaders.scenes;
 
-import java.io.FileInputStream;
-
 import br.com.poo.spaceinvaders.base.Params;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -19,7 +16,7 @@ public class MenuScene {
 	
 	private static MenuScene menuScene = null;
 	
-	public MenuScene() {
+	private MenuScene() {
 		
 	}
 	
@@ -40,7 +37,7 @@ public class MenuScene {
         
         try {        
 	        ImageView logoView = new ImageView();
-	        Image logo = new Image(new FileInputStream("C:\\Users\\leonardo_veiga\\Pictures\\Other\\Space_invaders_logo.svg.png"));
+	        Image logo = new Image(MenuScene.class.getResourceAsStream("/br/com/poo/spaceinvaders/resources/space-invaders-logo.png"));
 	        logoView.setFitHeight(Params.WINDOW_HEIGHT * 0.5);
 	        logoView.setFitWidth(Params.WINDOW_WIDTH * 0.5);
 	        logoView.setLayoutX(Params.WINDOW_WIDTH * 0.25);

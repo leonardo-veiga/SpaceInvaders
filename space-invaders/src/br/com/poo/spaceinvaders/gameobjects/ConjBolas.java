@@ -3,6 +3,7 @@ package br.com.poo.spaceinvaders.gameobjects;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.poo.spaceinvaders.base.Character;
+import br.com.poo.spaceinvaders.base.Game;
 import br.com.poo.spaceinvaders.base.BasicElement;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -40,7 +41,10 @@ public class ConjBolas extends BasicElement {
         for(int i=0;i<elements.size();i++){
             elements.get(i).testaColisao(outro);
             if (elements.get(i).jaColidiu()){
-                elements.remove(i);
+            	
+                Game.getInstance().verifyPoints(elements.get(i));
+            	elements.remove(i);
+                
                 if (elements.size() == 0){
                     deactivate();
                 }
@@ -79,7 +83,7 @@ public class ConjBolas extends BasicElement {
         
     @Override
     public void Draw(GraphicsContext graphicsContext){
-        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.setFill(Color.TRANSPARENT);
         graphicsContext.fillRect(getX(), getY(), getLargura(), getAltura());
         for(int i=0;i<elements.size();i++){
             elements.get(i).Draw(graphicsContext);

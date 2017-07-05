@@ -8,6 +8,7 @@ import br.com.poo.spaceinvaders.gameobjects.Canhao;
 import br.com.poo.spaceinvaders.gameobjects.ConjBolas;
 import br.com.poo.spaceinvaders.gameobjects.Enemy;
 import br.com.poo.spaceinvaders.gameobjects.PiscaPisca;
+import br.com.poo.spaceinvaders.scenes.GameScene;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.canvas.GraphicsContext;
@@ -43,17 +44,14 @@ public class Game {
         activeChars.remove(c);
         if (c == canhao){
             canhao = null;
-            System.out.println("+++++++++++++++++");
-            System.out.println(getTotalPoints().get());
-            System.out.println("+++++++++++++++++");
+            GameScene.getInstance().stop();
+			
         } else {
-        	if (c instanceof Enemy) {
-        		Enemy e = (Enemy) c;
-        		addPoints(e.getPoints());
-        	}
+        	verifyPoints(c);
         }
         
         if (noEnemyRemaining()) {
+        	GameScene.getInstance().stop();
         	System.out.println("GAME OVER!");
         }
     }   
@@ -71,6 +69,8 @@ public class Game {
         }
         
         activeChars.add(new PiscaPisca(120,380));
+        
+        activeChars.add(new PiscaPisca(120,420));
         
         activeChars.add(new ConjBolas(120,300));
         
@@ -119,5 +119,12 @@ public class Game {
 			}
 		}
     	return true;
+    }
+    
+    public void verifyPoints(Character c) {
+    	if (c instanceof Enemy) {
+    		Enemy e = (Enemy) c;
+    		addPoints(e.getPoints());
+    	}
     }
 }
