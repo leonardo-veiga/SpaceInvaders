@@ -1,5 +1,8 @@
+package br.com.poo.spaceinvaders.base;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -7,8 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -39,10 +42,20 @@ public class Main extends Application {
         startGame.setText("Start Game");
         rootMenu.getChildren().add(startGame);
         
+//        Text tEat = new Text();
+//        tEat.setText("GG! " + Game.getInstance().getTotalPoints());
+//        rootGame.getChildren().add(tEat);
+        
+        Label label = new Label();
+        label.textProperty().bind(Bindings.createStringBinding(() -> ("Score: " + Game.getInstance().getTotalPoints().get()), Game.getInstance().getTotalPoints()));
+        rootGame.getChildren().add(label);
+        
+//        Image image = new Image(getClass().getResourceAsStream("labels.jpg"));
+        
         startGame.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
 	    	public void handle(ActionEvent e) {
-	    		startGamef(sceneGame, canvas, stage);
+	    		startGame(sceneGame, canvas, stage);
 	    	}
     	});
 
@@ -50,7 +63,7 @@ public class Main extends Application {
         stage.show();
     }    
     
-    private void startGamef(Scene scene, Canvas canvas, Stage stage) {
+    private void startGame(Scene scene, Canvas canvas, Stage stage) {
     	// Setup Game object
         Game.getInstance().Start();
         

@@ -1,7 +1,16 @@
+package br.com.poo.spaceinvaders.base;
+import java.util.LinkedList;
+import java.util.List;
+
+import br.com.poo.spaceinvaders.gameobjects.Ball;
+import br.com.poo.spaceinvaders.gameobjects.Canhao;
+import br.com.poo.spaceinvaders.gameobjects.ConjBolas;
+import br.com.poo.spaceinvaders.gameobjects.Enemy;
+import br.com.poo.spaceinvaders.gameobjects.PiscaPisca;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
-import java.util.List;
-import java.util.LinkedList;
 
 /**
  * Handles the game lifecycle and behavior
@@ -11,9 +20,10 @@ public class Game {
     private static Game game = null;
     private Canhao canhao;
     private List<Character> activeChars;
-    private int totalPoints;
+    private LongProperty totalPoints;
     
     private Game(){
+    	this.totalPoints = new SimpleLongProperty(0);
     }
     
     public static Game getInstance(){
@@ -86,11 +96,11 @@ public class Game {
         }
     }
     
-    public void addPoints(int points) {
-    	this.totalPoints += points;
+    public void addPoints(long points) {
+    	this.totalPoints.set(this.totalPoints.get() + points);
     }
     
-    public int getTotalPoints() {
+    public LongProperty getTotalPoints() {
     	return this.totalPoints;
     }
 }

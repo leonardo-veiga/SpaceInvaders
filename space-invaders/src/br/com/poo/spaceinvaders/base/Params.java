@@ -1,3 +1,5 @@
+package br.com.poo.spaceinvaders.base;
+
 import java.util.Random;
 
 public class Params{

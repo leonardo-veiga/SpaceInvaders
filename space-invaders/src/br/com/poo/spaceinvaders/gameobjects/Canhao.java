@@ -1,3 +1,8 @@
+package br.com.poo.spaceinvaders.gameobjects;
+import br.com.poo.spaceinvaders.base.BasicElement;
+import br.com.poo.spaceinvaders.base.Game;
+import br.com.poo.spaceinvaders.base.KeyboardCtrl;
+import br.com.poo.spaceinvaders.base.Params;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Paint;

@@ -1,11 +1,11 @@
+package br.com.poo.spaceinvaders.gameobjects;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import br.com.poo.spaceinvaders.base.Character;
+import br.com.poo.spaceinvaders.base.BasicElement;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 /**
  * Represents a set of balls that crosses the screen over and over again
