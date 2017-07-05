@@ -1,7 +1,6 @@
 package br.com.poo.spaceinvaders.base;
-import javafx.scene.canvas.GraphicsContext;
+
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Paint;
 
 /**
  * Represents the basic game character

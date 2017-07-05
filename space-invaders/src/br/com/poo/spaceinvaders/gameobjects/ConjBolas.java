@@ -79,7 +79,7 @@ public class ConjBolas extends BasicElement {
         
     @Override
     public void Draw(GraphicsContext graphicsContext){
-        graphicsContext.setFill(Color.BROWN);
+        graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(getX(), getY(), getLargura(), getAltura());
         for(int i=0;i<elements.size();i++){
             elements.get(i).Draw(graphicsContext);

@@ -1,4 +1,5 @@
 package br.com.poo.spaceinvaders.base;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,11 +43,18 @@ public class Game {
         activeChars.remove(c);
         if (c == canhao){
             canhao = null;
+            System.out.println("+++++++++++++++++");
+            System.out.println(getTotalPoints().get());
+            System.out.println("+++++++++++++++++");
         } else {
         	if (c instanceof Enemy) {
         		Enemy e = (Enemy) c;
         		addPoints(e.getPoints());
         	}
+        }
+        
+        if (noEnemyRemaining()) {
+        	System.out.println("GAME OVER!");
         }
     }   
 
@@ -102,5 +110,14 @@ public class Game {
     
     public LongProperty getTotalPoints() {
     	return this.totalPoints;
+    }
+    
+    public boolean noEnemyRemaining() {
+    	for (Character character : activeChars) {
+			if(character instanceof Enemy) {
+				return false;
+			}
+		}
+    	return true;
     }
 }
